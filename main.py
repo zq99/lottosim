@@ -34,12 +34,10 @@ class Lottery:
             ValueError("incorrect parameters for lottery!")
         self.balls = []
         self.draw = []
-        self.min_number = rules.min_number
-        self.max_number = rules.max_number
-        self.balls_per_draw = rules.balls_count
+        self.rules = rules
 
     def __setup(self):
-        self.balls = [Ball(i) for i in full_range(self.min_number, self.max_number)]
+        self.balls = [Ball(i) for i in full_range(self.rules.min_number, self.rules.max_number)]
 
     def __get_random_ball(self):
         rand.shuffle(self.balls)
@@ -47,7 +45,7 @@ class Lottery:
 
     def draw_numbers(self):
         self.__setup()
-        for _n in full_range(1, self.balls_per_draw):
+        for _n in full_range(1, self.rules.balls_count):
             self.draw.append(self.__get_random_ball())
 
     def __is_ball_drawn(self, ball):
