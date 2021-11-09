@@ -45,7 +45,7 @@ class Lottery:
         rand.shuffle(self.balls)
         return self.balls.pop()
 
-    def run_draw(self):
+    def draw_numbers(self):
         self.__setup()
         for _n in full_range(1, self.balls_per_draw):
             self.draw.append(self.__get_random_ball())
@@ -67,7 +67,7 @@ class Lottery:
             count += 1 if Ball(n) in self.draw else 0
         return count
 
-    def get_draw(self):
+    def get_drawn_numbers(self):
         return sorted([ball.number for ball in self.draw])
 
 
@@ -129,12 +129,12 @@ class Simulation:
     def start(self):
         result = Result(self.player_count)
         lottery = Lottery(self.rules)
-        lottery.run_draw()
+        lottery.draw_numbers()
         for _n in full_range(1, self.player_count):
             player = Player(self.rules)
             count = lottery.check_numbers(player.selection)
             result.log_player_matches(count)
-        result.lottery_numbers = lottery.get_draw()
+        result.lottery_numbers = lottery.get_drawn_numbers()
         return result
 
 
