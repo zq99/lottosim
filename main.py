@@ -58,6 +58,10 @@ class Lottery:
             return ball in self.balls
 
     def check_numbers(self, num_list):
+        """
+        num_list = list of numbers selected by a player
+        this method checks the players numbers against the lotto draw numbers
+        """
         count = 0
         for n in num_list:
             count += 1 if Ball(n) in self.draw else 0
@@ -96,8 +100,8 @@ class Result:
     def log_player_matches(self, ball_count):
         """
         ball_count is the number of matches a player gets
-        this method when called just records that a player
-        receieved a N matches in their selection
+        This method when called just records that a player
+        received a N matches in their selection
         """
         self.results[ball_count] = self.results.get(ball_count, 0) + 1
 
