@@ -16,13 +16,13 @@ class Rules:
     """
     defines the lottery setup
     """
-    def __init__(self, min_number=1, max_number=49, balls_count=6):
+    def __init__(self, min_number=1, max_number=49, required_selection_count=6):
         self.min_number = min_number
         self.max_number = max_number
-        self.balls_count = balls_count
+        self.required_selection_count = required_selection_count
 
     def is_valid(self):
-        return (self.min_number < self.balls_count < self.max_number) & self.min_number >= 1
+        return (self.min_number < self.required_selection_count < self.max_number) & self.min_number >= 1
 
 
 class Lottery:
@@ -45,7 +45,7 @@ class Lottery:
 
     def draw_numbers(self):
         self.__setup()
-        for _n in full_range(1, self.rules.balls_count):
+        for _n in full_range(1, self.rules.required_selection_count):
             self.draw.append(self.__get_random_ball())
 
     def __is_ball_drawn(self, ball):
@@ -82,7 +82,7 @@ class Player:
         choice = [n for n in full_range(rules.min_number, rules.max_number)]
         rand.shuffle(choice)
         self.selection = []
-        for _n in full_range(1, rules.balls_count):
+        for _n in full_range(1, rules.required_selection_count):
             self.selection.append(choice.pop())
 
 
@@ -140,7 +140,7 @@ def process():
     """
     Main method to execute
     """
-    rules = Rules(min_number=1, max_number=49, balls_count=6)
+    rules = Rules(min_number=1, max_number=49, required_selection_count=6)
     simulation = Simulation(players=10000, rules=rules)
     result = simulation.start()
     result.print_results()
