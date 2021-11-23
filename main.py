@@ -60,10 +60,10 @@ class Lottery:
         num_list = list of numbers selected by a player
         this method checks the players numbers against the lotto draw numbers
         """
-        count = 0
+        matched_count = 0
         for n in num_list:
-            count += 1 if Ball(n) in self.draw else 0
-        return count
+            matched_count += 1 if Ball(n) in self.draw else 0
+        return matched_count
 
     def get_drawn_numbers(self):
         return sorted([ball.number for ball in self.draw])
@@ -108,11 +108,11 @@ class Result:
         Summary of the simulation output
         """
         log.info("total players = {:,}".format(self.total))
-        log.info("numbers = {}".format(self.lottery_numbers))
+        log.info("lottery numbers = {}".format(self.lottery_numbers))
         sorted_dict = {k: v for k, v in sorted(self.results.items())}
         for r in sorted_dict:
             percent = round(100 * (self.results[r] / self.total), 2)
-            row = "Ball count = {} Players Matched = {:,} Percentage = {}%".format(r, self.results[r], percent)
+            row = "Matched count = {} | Players = {:,} | Percentage = {}%".format(r, self.results[r], percent)
             log.info(row)
 
 
@@ -130,8 +130,8 @@ class Simulation:
         lottery.draw_numbers()
         for _n in full_range(1, self.player_count):
             player = Player(self.rules)
-            count = lottery.check_numbers(player.selection)
-            result.log_player_matches(count)
+            matched_count = lottery.check_numbers(player.selection)
+            result.log_player_matches(matched_count)
         result.lottery_numbers = lottery.get_drawn_numbers()
         return result
 
