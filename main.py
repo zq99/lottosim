@@ -129,7 +129,7 @@ class Simulation:
         lottery = Lottery(self.rules)
         lottery.draw_numbers()
         for _n in full_range(1, self.player_count):
-            player = Player(self.rules)
+            player = Player(lottery.rules)
             matched_count = lottery.check_numbers(player.selection)
             result.log_player_matches(matched_count)
         result.lottery_numbers = lottery.get_drawn_numbers()
