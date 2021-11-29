@@ -21,8 +21,11 @@ class Rules:
         self.max_number = max_number
         self.required_selection_count = required_selection_count
 
+    def get_range(self):
+        return abs(self.max_number - self.min_number)
+
     def is_valid(self):
-        return (self.min_number < self.required_selection_count < self.max_number) & self.min_number >= 1
+        return (self.min_number < self.max_number) & (self.min_number >= 1) & (self.required_selection_count < self.get_range())
 
 
 class Lottery:
