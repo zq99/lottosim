@@ -22,7 +22,7 @@ class Rules:
         self.required_selection_count = required_selection_count
 
     def get_range(self):
-        return abs(self.max_number - self.min_number)
+        return abs(self.max_number - self.min_number) + 1
 
     def is_valid(self):
         return (self.min_number < self.max_number) & (self.min_number >= 1) & (self.required_selection_count < self.get_range())
