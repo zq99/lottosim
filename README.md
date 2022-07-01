@@ -1,4 +1,4 @@
-Dr Marcus du Sautoy gave a presentation at the 2014 IFTA conference in London, organized by the UK Society of Technical Analysts
+Dr Marcus du Sautoy gave a presentation at the 2014 IFTA conference in London, organized by the UK Society of Technical Analysts.
 
 He got the audience to participate in an exercise to demonstrate the probability behind the UK lottery.
 
